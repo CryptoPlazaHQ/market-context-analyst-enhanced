@@ -1,0 +1,143 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "github",
+      "config": {
+        "repository": "market-context-analyst-enhanced",
+        "branch": "main",
+        "features": [
+          "version_control",
+          "documentation",
+          "issue_tracking"
+        ],
+        "permissions": [
+          "read",
+          "write"
+        ]
+      }
+    },
+    "memory": {
+      "type": "memory",
+      "config": {
+        "maxSize": "1GB",
+        "persistence": "session",
+        "caching": {
+          "enabled": true,
+          "strategy": "LRU",
+          "maxAge": 300000
+        },
+        "features": [
+          "market_data_cache",
+          "analysis_results",
+          "session_state"
+        ]
+      }
+    },
+    "filesystem": {
+      "type": "filesystem",
+      "config": {
+        "rootPath": "market-analysis",
+        "features": [
+          "data_persistence",
+          "configuration",
+          "analysis_storage"
+        ],
+        "permissions": {
+          "read": true,
+          "write": true,
+          "create": true
+        },
+        "backup": {
+          "enabled": true,
+          "interval": "1d",
+          "retention": "30d"
+        }
+      }
+    }
+  },
+  "integrations": {
+    "marketAnalysis": {
+      "enabled": true,
+      "features": [
+        "technical_analysis",
+        "fundamental_analysis",
+        "sentiment_analysis"
+      ],
+      "dataStorage": {
+        "primary": "memory",
+        "persistence": "filesystem",
+        "versioning": "github"
+      }
+    },
+    "riskManagement": {
+      "enabled": true,
+      "features": [
+        "position_sizing",
+        "exposure_monitoring",
+        "risk_alerts"
+      ],
+      "storage": {
+        "state": "memory",
+        "history": "filesystem"
+      }
+    },
+    "reporting": {
+      "enabled": true,
+      "features": [
+        "performance_metrics",
+        "risk_reports",
+        "market_analysis"
+      ],
+      "output": {
+        "format": "markdown",
+        "storage": "github",
+        "automation": true
+      }
+    }
+  },
+  "security": {
+    "encryption": {
+      "enabled": true,
+      "algorithm": "AES-256-GCM",
+      "keyRotation": "30d"
+    },
+    "authentication": {
+      "required": true,
+      "method": "token",
+      "expiry": "8h"
+    },
+    "logging": {
+      "enabled": true,
+      "level": "info",
+      "retention": "90d"
+    }
+  },
+  "performance": {
+    "caching": {
+      "enabled": true,
+      "strategy": "adaptive",
+      "maxSize": "500MB"
+    },
+    "optimization": {
+      "dataCompression": true,
+      "batchProcessing": true,
+      "asyncOperations": true
+    },
+    "monitoring": {
+      "enabled": true,
+      "metrics": [
+        "response_time",
+        "memory_usage",
+        "error_rate"
+      ],
+      "alerts": {
+        "enabled": true,
+        "thresholds": {
+          "response_time": 1000,
+          "memory_usage": 0.8,
+          "error_rate": 0.01
+        }
+      }
+    }
+  }
+}
